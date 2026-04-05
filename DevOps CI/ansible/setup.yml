@@ -1,0 +1,10 @@
+- name: Configure Server
+  hosts: servers
+  tasks:
+    - name: Check Docker is running
+      command: docker info
+      register: docker_info
+
+    - name: Print Docker status
+      debug:
+        msg: "Docker is running: {{ docker_info.stdout_lines[0] }}"

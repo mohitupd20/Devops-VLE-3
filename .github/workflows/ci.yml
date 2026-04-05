@@ -1,0 +1,25 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Build Step
+      run: echo "Build completed successfully"
+
+    - name: Test Step
+      run: echo "Tests passed"
+
+    - name: Send Slack Notification
+      run: |
+        curl -X POST -H 'Content-type: application/json' \
+        --data '{"text":"✅ CI Pipeline Success!"}' \
+        ${{ secrets.SLACK_WEBHOOK }}

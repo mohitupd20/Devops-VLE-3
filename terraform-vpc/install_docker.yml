@@ -1,0 +1,15 @@
+- name: Configure EC2 Instances
+  hosts: servers
+  become: yes        # Run as sudo
+
+  tasks:
+    - name: Install Docker
+      yum:
+        name: docker
+        state: present
+
+    - name: Start Docker Service
+      service:
+        name: docker
+        state: started
+        enabled: true
